@@ -36,7 +36,7 @@ Route::get('lang/{lang}','HomeController@setLang');
 Route::post('admin/profile','ProfileController@profile');
 
 
-
+/// testing now project
 
 
 
