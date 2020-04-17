@@ -71,7 +71,7 @@ class JobsTableSeeder extends Seeder
         ],
         ['user_id'=> 1,
         'category_id'=> 4,
-        'type_id'=> 32,
+        'type_id'=> 2,
         'location_id'=>1,
         'title'=> 'STEAM Instructor/Teacher',
         'company_name'=> 'Technokids & TechnoFuture Elseyouf',
