@@ -30,7 +30,7 @@ class CreateJobsTable extends Migration
             $table->unsignedSmallInteger('count_apply')->default(0);
             $table->string('phone')->nullable();
             $table->timestamps();
-            
+            $table->softDeletes();
 
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('user_id')->references('id')->on('users');

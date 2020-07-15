@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTypesTable extends Migration
+class CreateSubpagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('types', function (Blueprint $table) {
+        Schema::create('subpages', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('page_id');
             $table->string('name');
-            $table->string('icon'); 
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('page_id')->on('pages')->references('id');
         });
     }
 
@@ -29,6 +31,6 @@ class CreateTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('types');
+        Schema::dropIfExists('subpages');
     }
 }

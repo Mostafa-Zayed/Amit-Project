@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Setting;
 class SettingController extends Controller
 {
-    // Index Function
+    //
     public function index(){
         
         $settings = Setting::all();
@@ -14,7 +14,6 @@ class SettingController extends Controller
         return view('admin/settings/index',compact('settings',$settings));
     }
 
-    // Update Function
     public function update(Request $request,$id){
 
         $settings = Setting::findOrFail($id);
@@ -47,7 +46,7 @@ class SettingController extends Controller
         $settings->title = $request['title'];
         
         $settings->save();
-        
+        //dd($request->all());
         return view('admin/dashboard');
     }
 

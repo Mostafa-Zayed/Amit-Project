@@ -7,7 +7,7 @@ use App\Type;
 use Illuminate\Support\Facades\DB;
 class TypeController extends Controller
 {
-    //Index Function
+    //
     public function index(Request $request){
 
         $types = DB::table('types');
@@ -18,13 +18,11 @@ class TypeController extends Controller
         return view('admin/jobtypes.index',compact('types',$types));
     }
     
-    // Create Function
     public function create(){
 
         return view('admin/jobtypes.create');
     }
 
-    // Store Function
     public function store(Request $request){
         $this->validate($request,[
             'jobtype_name' => 'required',
@@ -37,7 +35,6 @@ class TypeController extends Controller
         return redirect('admin/jobtypes')->with('success','Job Type Is Created Succeffuly');
     }
 
-    // Edit Function
     public function edit($id){
 
         $jobtypes = Type::findOrFail($id);
@@ -45,7 +42,6 @@ class TypeController extends Controller
         
     }
 
-    // Update Function
     public function update(Request $request, $id){
         
         $type = Type::findOrFail($id);
@@ -61,7 +57,6 @@ class TypeController extends Controller
         return redirect('admin/jobtypes')->with('success','The Jobt Type Is Updated Succeffuly');
     }
 
-    // Destroy Function
     public function destroy($id){
         $jobtype = Type::findorFail($id);
         $jobtype->destroy($id);

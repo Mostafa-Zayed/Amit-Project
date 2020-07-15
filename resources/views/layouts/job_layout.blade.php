@@ -32,7 +32,7 @@
               </div>
             </div>  
             
-          
+          <button class="btn btn-primary rounded ml-5 mr-5 p-1">Apply Job</button>
       
           </a>
           

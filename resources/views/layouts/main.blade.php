@@ -60,27 +60,42 @@
 
                     <ul class="site-menu js-clone-nav d-none d-lg-block">
                     @auth
-                      @foreach($pages as $page)
-                          @if($page->name === 'categories')
+                    @foreach($pages as $page)
+                    
+                          @if(!empty($page->subpages[0]))
                             <li class="has-children">
+                                <a href="{{url( ($page->name == 'home')? '/' : $page->name  )}}">{{$page->name}}</a>
+                                <ul class='dropdown arrow-top'>
+                                  @foreach($page->subpages as $subpage)
+                                    <li>
+                                      <a href="{{url($page->name.'/'.$subpage->name)}}">{{ucwords($subpage->name)}}</a>
+                                    </li>
+                                  @endforeach
+                                </ul>
+                            </li>
+                          @elseif($page->name === 'categories')
+                          <li class="has-children">
                               <a href="{{url($page->name)}}">{{ucfirst(__('index.'.$page->name))}}</a>
                               <ul class='dropdown arrow-top'>
                                 @foreach($categories as $category)
+                                  
                                   <li>
                                     <a href="{{url($category->name)}}">{{ucfirst(__('index.'.$category->name))}}</a>
                                   </li>
+                                  
                                 @endforeach
                               </ul>
-                            </li>
-                          @elseif($page->name === 'register')
-                            <li>{{__('index.welcom')}} {{ucfirst(auth()->user()->name)}}</li>
-                          @elseif($page->name === 'login')
-                            <li class="has-children">
-                                <a href ="#">{{__('index.my account')}}</a>
+                          </li>
+                          @else
+                            @if($page->name === 'register')
+                              <li>{{__('index.welcom')}} {{ucfirst(auth()->user()->name)}}</li>
+                            @elseif($page->name === 'login')
+                              <li class="has-children">
+                                  <a href ="#">{{__('index.my account')}}</a>
                                 <ul class='dropdown'> 
-                                  <li>
+                                    <li>
                                     @php
-                                      $link = "dashboard/profile/".auth()->user()->id
+                                      $link = "dashboard/my_profile/".auth()->user()->id
                                     @endphp
                                       <a href="{{url($link)}}">{{ucfirst(__('index.my profile'))}}</a> 
                                     </li>
@@ -91,57 +106,72 @@
                                       <a href="#" onclick="document.getElementById('form-logout').submit();">{{ucfirst(__('index.logout'))}}</a>
                                       <form action="{{url('logout')}}" method='POST' id='form-logout'>{{csrf_field()}}</form>
                                     </li>
-                                  </ul> 
+                                </ul> 
                               </li>
-                          @else
+                            @else
                               <li>
                                 <a href="{{url( ($page->name == 'home')? '/' : $page->name  )}}">{{__('index.'.$page->name)}}</a>
                               </li>
+                            @endif
                           @endif
-                      @endforeach
+                    
+                    @endforeach
                     <li class="has-children">
                       <a href="#">{{ucfirst(app()->getLocale())}}</a>
                       <ul class='dropdown'>
                       @if(app()->getLocale() === 'en')
-                        <li><a href="{{url('lang/ar')}}">AR</a></li>
+                        <li><a href="{{url('/lang/ar')}}">AR</a></li>
                       @else
-                        <li><a href="{{url('lang/en')}}">EN</a></li>
+                        <li><a href="{{url('/lang/en')}}">EN</a></li>
                       @endif
                       </ul>
                     </li>
-  
+                    <!--<li><a href="#"><span class="bg-primary text-white py-3 px-4 rounded"><span class="icon-plus mr-3"></span>Post New Job</span></a></li>-->
                     @endauth
 
                     @guest
-                        @foreach($pages as $page)
-                          @if($page->name === 'categories')
-                            <li class="has-children">
-                              <a href="{{url($page->name)}}">{{$page->name}}</a>
-                              <ul class='dropdown arrow-top'>
-                                @foreach($categories as $category)
-                                  <li>
-                                    <a href="{{url($category->name)}}">{{ucwords($category->name)}}</a>
-                                  </li>
-                                @endforeach
-                              </ul>
-                            </li>
-                          @else
-                            <li>
-                              <a href="{{url( ($page->name == 'home')? '/' : $page->name  )}}">{{$page->name}}</a>
-                            </li>
-                          @endif
-                        @endforeach
-                            <li class="has-children">
-                              <a href="#">{{ucfirst(app()->getLocale())}}</a>
-                                <ul class='dropdown arrow-top'>
-                                @if(app()->getLocale() === 'ar')
-                                  <li><a href="{{url('lang/en')}}">EN</a></li>
-                                @else
-                                  <li><a href="{{url('lang/ar')}}">AR</a></li>
-                                @endif
-                                </ul>
-                            </li>
-                    @endguest                    
+                    @foreach($pages as $page)
+                      @if(!empty($page->subpages[0]))
+                        <li class="has-children">
+                          <a href="{{url( ($page->name == 'home')? '/' : $page->name  )}}">{{$page->name}}</a>
+                          <ul class='dropdown arrow-top'>
+                            @foreach($page->subpages as $subpage)
+                              <li>
+                                <a href="{{url($page->name.'/'.$subpage->name)}}">{{ucwords($subpage->name)}}</a>
+                              </li>
+                            @endforeach
+                          </ul>
+                        </li>
+                      @elseif($page->name === 'categories')
+                        <li class="has-children">
+                          <a href="{{url($page->name)}}">{{$page->name}}</a>
+                          <ul class='dropdown arrow-top'>
+                            @foreach($categories as $category)
+                              <li>
+                                <a href="{{url($category->name)}}">{{ucwords($category->name)}}</a>
+                              </li>
+                            @endforeach
+                          </ul>
+                        </li>
+                    @else
+                      <li>
+                        <a href="{{url( ($page->name == 'home')? '/' : $page->name  )}}">{{$page->name}}</a>
+                      </li>
+                    @endif
+                  @endforeach
+                  <li class="has-children">
+                      <a href="+">{{ucfirst(app()->getLocale())}}</a>
+                      <ul class='dropdown arrow-top'>
+                        <li><a href="#">EN</a></li>
+                        <li><a href="#">AR</a></li>
+                      </ul>
+                  </li>
+                  @endguest                    
+                    <!--
+                      
+                  
+                      <li><a href="{{url('/admin/new_post')}}"><span class="bg-primary text-white py-3 px-4 rounded"><span class="icon-plus mr-3"></span>Post New Job</span></a></li>
+                    -->
                     </ul>
                   </div>
                 </nav>

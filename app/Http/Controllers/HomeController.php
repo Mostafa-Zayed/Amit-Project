@@ -21,7 +21,7 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Gate;
 use Auth;
-use App;
+
 class HomeController extends Controller
 {
     /**
@@ -40,7 +40,6 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-     // Index Function
     public function index(){
         
         $categories = DB::table('categories')->take(8)->get();
@@ -50,12 +49,13 @@ class HomeController extends Controller
         $testimonie = Testimonie::with('user');
         $testimonie = $testimonie->first();
         $features   = DB::table('features')->take(4)->get();
+        //$about_us = About::findOrFail(1);
         $about_us = DB::table('abouts')->first();
         
         return view('index',compact('categories','pages','locations','jobs','testimonie','features','about_us',$categories,$pages,$locations,$jobs,$testimonie,$features,$about_us));
     }
 
-    // About Function
+
     public function about(){
 
         $pages = Page::all();
@@ -63,12 +63,12 @@ class HomeController extends Controller
         $locations = Location::all();
         $about_us = About::with('user');
         $about_us = $about_us->first();
+        //$about_us = DB::table('abouts')->first();
         $team =  Team::all();
         
         return view('about',compact('pages','categories','about_us','team',$pages,$categories,$about_us,$team));
     }
 
-    // Contact Function
     public function contact(){
 
         $pages = Page::all();
@@ -80,7 +80,6 @@ class HomeController extends Controller
 
     }
 
-    // Jobs Function
     public function jobs(Request $request){
         
         
@@ -113,26 +112,22 @@ class HomeController extends Controller
         return view('jobs',compact('pages','categories','locations','jobs','features','about_us',$pages,$categories,$locations,$jobs,$features,$about_us));
     }
 
-    // Categories Function
     public function categories(){
 
         $pages = Page::all();
         return view('categories',compact('pages',$pages));
     }
 
-    // Blog Function
     public function blog(){
         $pages = Page::all();
         return view('blog',compact('pages',$pages));
     }
 
-    // Admin Function
     public function admin(){
       
         return view('admin.dashboard');
     }
 
-    // Show Job Function
     public function show_job($id){
 
         $pages= Page::all();
@@ -142,24 +137,15 @@ class HomeController extends Controller
         return view('singlejob')->with('pages',$pages)->with('about_us',$about_us)->with('categories',$categories)->with('job',$job);
     }
 
-    // Send Contact Function
+    
+
     public function sendContact(Request $request){
 
         
     }
 
-    // Dashboard Function
     public function dashboard(){
         
         return view('dashboard/index');
-    }
-
-    // Set Lang Function
-    public function setLang($lang){
-
-        if(in_array($lang,['en','ar'])){
-            session(['lang'=>$lang]);
-        }
-        return redirect()->back();
     }
 }

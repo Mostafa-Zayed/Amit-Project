@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Profile;
 class ProfileController extends Controller
 {
-    // Index Function
+    //
     public function index(){
 
         $profiles = Profile::select('id','user_id','permission_id','status');
@@ -14,14 +14,13 @@ class ProfileController extends Controller
         return view('admin/profiles.index',compact('profiles',$profiles));
     }
 
-    // Profile Function
     public function profile(Request $request){
         $user_id = (int)$request['user_id'];
         
         $profile = Profile::where('user_id','=',$user_id)->first();
 
         if(isset($profile) && !empty($profile)){
-        
+            dd($request->all());
             $profile->user_id = (int)$request['user_id'];
             $profile->first_name = $request['first_name'];
             $profile->last_name = $request['last_name'];

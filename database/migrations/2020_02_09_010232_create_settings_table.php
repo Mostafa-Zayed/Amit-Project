@@ -28,6 +28,7 @@ class CreateSettingsTable extends Migration
             $table->text('more_info');
             $table->string('header_bg');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

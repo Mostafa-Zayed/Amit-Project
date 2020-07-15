@@ -173,7 +173,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Job Describtion :</label>
-                                                    <textarea rows="10" class="form-control" placeholder="Job Details Here" name="job_describe"></textarea>
+                                                    <textarea rows="5" class="form-control" placeholder="Job Details Here" name="job_describe"></textarea>
                                                 </div>
                                             </div>
                                         </div>

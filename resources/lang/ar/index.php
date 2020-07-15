@@ -28,10 +28,7 @@ return [
     'search'=>'بحث',
     'recent jobs'=>'وظائف جديده',
     'find job'=>'ابحث عن وظيفتك',
-    'show more jobs'=>'المزيد من الوظائف',
-    'city'=>'المدينه',
-    'all locations'=>'الموقع',
-    'job title'=>'اسم الوظيفه'
+    'show more jobs'=>''
 
 
 

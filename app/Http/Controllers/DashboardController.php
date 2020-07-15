@@ -12,18 +12,18 @@ use App\Location;
 use Illuminate\Support\Facades\Session;
 class DashboardController extends Controller
 {
-    // Index Function
+    //
     public function index($id){
         
         if(Auth::user()->id == $id){
             return view('dashboard/index');
         }else{
 
-            return abort(404);
+            dd('errorjjjj');
         }
     }
 
-    // Profile Function
+
     public function profile($id){
         if(Auth::user()->id == $id){
 
@@ -35,25 +35,18 @@ class DashboardController extends Controller
             }
             return view('dashboard/profile',compact('user','hasprofile',$user,$hasprofile));
 
-        }else{
-            return abort(404);
         }
         
     }
-
-    // Jobs Function
     public function jobs($id){
         
         if(Auth::user()->id == $id){
 
             $jobs = Job::where('user_id','=',$id)->paginate(5);
             return view('dashboard/jobs',compact('jobs',$jobs));
-        }else{
-            return abort(404);
         }
     }
 
-    // Create Function
     public function create(){
 
         $categories = Category::all();
@@ -62,7 +55,7 @@ class DashboardController extends Controller
         return view('dashboard/create',compact('categories','types','locations',$categories,$types,$locations));
     }
 
-    // Store Function
+
     public function store(Request $request){
 
         if(Auth::user()->id == $request['user_id']){
@@ -102,28 +95,21 @@ class DashboardController extends Controller
                 Session::flash('success','Job Is Added  Successfuly');
             return redirect('dashboard/jobs/'.Auth::user()->id);
 
-            }else{
-                return abort(404);
             }
         
-    }
-
-    // Edit Function 
-    public function edit($id){
-
-        $job = Job::FindOrFail($id);
-        if(Auth::user()->id == $job->user->id){
-            $categories = Category::all();
-            $types      = Type::all();
-            $locations  = Location::all();
-            return view('dashboard/edit',compact('job','categories','types','locations',$job,$categories,$types,$locations));
-        }else{
-            return abort(404);
         }
+        public function edit($id){
+            //dd($request->all());
+            $job = Job::FindOrFail($id);
+            if(Auth::user()->id == $job->user->id){
+                $categories = Category::all();
+                $types      = Type::all();
+                $locations  = Location::all();
+                return view('dashboard/edit',compact('job','categories','types','locations',$job,$categories,$types,$locations));
+            }
             
-    }
+          }
 
-    // Update Function
     public function update(Request $request,$id){
         
         $job = Job::FindOrFail($id);
@@ -161,22 +147,18 @@ class DashboardController extends Controller
             $job->save();
             Session::flash('success','Job Is Updated   Successfuly');
             return redirect('dashboard/jobs/'.Auth::user()->id);
-        }else{
-            return abort(404);
         }
 
     }
        
-    // Destroy Function  
-    public function destroy($id){
       
-        $job = Job::findOrFail($id);
-        if(Auth::user()->id == $job->user->id){
-            $job->delete();
-            return redirect('dashboard/jobs/'.Auth()->user()->id)->with('success','Job Is Deleted Successfuly');
-        }else{
-            return abort(404);
-        }
+        public function destroy($id){
+      
+          $job = Job::findOrFail($id);
+          if(Auth::user()->id == $job->user->id){
+              $job->delete();
+              return redirect('dashboard/jobs/'.Auth()->user()->id)->with('success','Job Is Deleted Successfuly');
+          }
           
-    }
+      }
 }

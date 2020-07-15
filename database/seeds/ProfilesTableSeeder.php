@@ -14,6 +14,7 @@ class ProfilesTableSeeder extends Seeder
         //
         DB::table('profiles')->insert([
             ['user_id'=> 1,
+             'permission_id'=> 1,
              'first_name'=>'admin',
              'last_name'=>'admin',
              'job'=>'admin',
@@ -26,10 +27,11 @@ class ProfilesTableSeeder extends Seeder
              'about_me'=>'test',
              'fac_link'=>'test',
              'twt_link'=>'test',
-             'goog_link'=>'test'
-             
+             'goog_link'=>'test',
+             //'status'=> 0
             ],            
             ['user_id'=> 2,
+            'permission_id'=> 1,
             'first_name'=>'Michelle',
             'last_name'=>'Megan',
             'job'=>'CEO, Co-founder',
@@ -42,12 +44,13 @@ class ProfilesTableSeeder extends Seeder
             'about_me'=>'test',
             'fac_link'=>'test',
             'twt_link'=>'test',
-            'goog_link'=>'test'
-            ],
+            'goog_link'=>'test',
+            //'status'=> 0
+        ],
 
 
             ['user_id'=> 3,
-            
+            'permission_id'=> 1,
             'first_name'=>'Mike',
             'last_name'=>'Stellar',
             'job'=>'CEO, Co-founder',
@@ -60,12 +63,13 @@ class ProfilesTableSeeder extends Seeder
             'about_me'=>'test',
             'fac_link'=>'test',
             'twt_link'=>'test',
-            'goog_link'=>'test'
-            ],
+            'goog_link'=>'test',
+            //'status'=> 0
+        ],
 
 
             ['user_id'=> 4,
-            
+            'permission_id'=> 1,
             'first_name'=>'Gregg',
             'last_name'=>'White',
             'job'=>'VP Producer',
@@ -78,10 +82,12 @@ class ProfilesTableSeeder extends Seeder
             'about_me'=>'test',
             'fac_link'=>'test',
             'twt_link'=>'test',
-            'goog_link'=>'test'
-            ],
+            'goog_link'=>'test',
+            //'status'=> 0
+        ],
 
             ['user_id'=> 5,
+            'permission_id'=> 1,
             'first_name'=>'Rogie',
             'last_name'=>'Knitt',
             'job'=>'Project Manager',
@@ -95,9 +101,11 @@ class ProfilesTableSeeder extends Seeder
             'fac_link'=>'test',
             'twt_link'=>'test',
             'goog_link'=>'test',
-            ],
+            //'status'=> 0
+        ],
 
             ['user_id'=> 6,
+            'permission_id'=> 1,
             'first_name'=>'Ben',
             'last_name'=>'Koh',
             'job'=>'PHP Developer',
@@ -110,10 +118,12 @@ class ProfilesTableSeeder extends Seeder
             'about_me'=>'test',
             'fac_link'=>'test',
             'twt_link'=>'test',
-            'goog_link'=>'test'
-            ],
+            'goog_link'=>'test',
+            //'status'=> 0
+        ],
 
             ['user_id'=> 7,
+            'permission_id'=> 1,
             'first_name'=>'Chris',
             'last_name'=>'Stanworth',
             'job'=>'Product Designer',
@@ -126,10 +136,12 @@ class ProfilesTableSeeder extends Seeder
             'about_me'=>'test',
             'fac_link'=>'test',
             'twt_link'=>'test',
-            'goog_link'=>'test'
-            ],
+            'goog_link'=>'test',
+            //'status'=> 0
+        ],
 
             ['user_id'=> 8,
+            'permission_id'=> 1,
             'first_name'=>'Oly',
             'last_name'=>'Ahmed',
             'job'=>'CEO, Co-founder',
@@ -142,7 +154,8 @@ class ProfilesTableSeeder extends Seeder
             'about_me'=>'test',
             'fac_link'=>'test',
             'twt_link'=>'test',
-            'goog_link'=>'test'
+            'goog_link'=>'test',
+            //'status'=> 0
             ]
 
 

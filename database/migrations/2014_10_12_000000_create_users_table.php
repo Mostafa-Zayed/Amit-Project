@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('type')->default('normal');
             $table->rememberToken();
             $table->timestamps();
-            
+            $table->softDeletes();
         });
     }
 

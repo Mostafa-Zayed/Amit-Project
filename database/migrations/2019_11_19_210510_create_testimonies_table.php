@@ -19,7 +19,7 @@ class CreateTestimoniesTable extends Migration
             $table->text('content');
             $table->string('image_video');
             $table->timestamps();
-            
+            $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users');
         });

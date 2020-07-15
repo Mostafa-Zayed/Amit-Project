@@ -9,10 +9,11 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Team;
+//use Illuminate\Support\Facdes;
 use App\Profile;
 class UserController extends Controller
 {
-    // Index Function
+    
     public function index(Request $request){
 
         $users = DB::table('users');
@@ -36,12 +37,11 @@ class UserController extends Controller
     }
 
 
-    // Create Function
     public function create(){
         return view('admin/users/create');
     }
 
-    // Show Function
+
     public function show($id){
 
         $user = user::findOrFail($id);
@@ -50,7 +50,7 @@ class UserController extends Controller
         }else{
             $hasprofile = 0;
         }
-        
+        //dd($hasprofile);
         $team_id = 0;
         if($hasprofile === 1){
             
@@ -65,11 +65,17 @@ class UserController extends Controller
         }
 
         
+        
+        //$team_id = 0;
+        //dd($user->profile);
+        //dd($team_id);
+        //dd($hasprofile);
+
+        
+        
         return view('admin/users.show',compact('user','team_id','hasprofile',$user->profile,$team_id,$hasprofile));
     }
 
-
-    // Edit Function
     public function edit($id){
 
         $user = User::findOrFail($id);
@@ -106,11 +112,9 @@ class UserController extends Controller
 
 
 
-    }
+}
 
-
-    // Destroy Function
-    public function destroy($id){
+public function destroy($id){
 
     $user = User::findOrFail($id)->delete();
     return redirect('admin/users')->with('success','User Is Deleted Successfuly');

@@ -11,8 +11,8 @@ return [
     'jobs'=>'Jobs',
     'blog'=>'blog',
     'contact'=>'contact',
-    'login'=>'login',
-    'register'=>'register',
+    'login'=>'Login',
+    'register'=>'Register',
     'logout'=>'logout',
     'welcom'=>'welcom',
     'dir'=>'ltr',
@@ -25,12 +25,9 @@ return [
     'transportation && logistics'=>'transportation && logistics',
     'restaurant / food service'=>'restaurant / food service',
     'search'=>'search',
-    'Read More'=>'read more',
+    'Read More'=>'',
     'find job'=>'find job',
-    'recent jobs'=>'recent jobs',
-    'job title'=>'job title',
-    'city'=>'city',
-    'all locations'=>'all locations'
+    'recent jobs'=>'recent jobs'
 ];
 
 ?>

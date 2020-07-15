@@ -6,26 +6,22 @@ use Illuminate\Http\Request;
 use App\Testimonie;
 class TestimonieController extends Controller
 {
-    // Index Function
+    //
     public function index(){
         $testimonies = Testimonie::all();
         
         return view('admin.testimonies.index',compact('testimonies',$testimonies));
     }
 
-    // Show Function
     public function show($id){
         $testimonie = Testimonie::findOrFail($id);
         return view('admin.testimonies.show',compact('testimonie',$testimonie));
     }
-
-    // Create Function
     public function create(){
 
         return view('admin.testimonies.create');
     }
 
-    // Store Function
     public function store(Request $request){
 
         $this->validate($request,[
@@ -43,13 +39,11 @@ class TestimonieController extends Controller
         
     }
 
-    // Edit Function
     public function edit($id){
         $testimonie = Testimonie::findOrFail($id);
         return view('admin/testimonies.edit',compact('testimonie',$testimonie));
     }
 
-    // Update Function
     public function update(Request $request,$id){
         $testimonie = Testimonie::findOrFail($id);
         $this->validate($request,[
@@ -65,7 +59,6 @@ class TestimonieController extends Controller
         return redirect('admin/testimonies')->with('success','Testimonie Is Updated Successfuly');
     }
 
-    // Destroy Function
     public function destroy($id){
         $testimonie = Testimonie::findOrFail($id);
         $testimonie->destroy($id);

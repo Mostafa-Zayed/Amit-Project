@@ -17,9 +17,9 @@ class CreateTeamsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('profile_id');
             $table->timestamps();
-        
+            $table->softDeletes();
 
-            $table->foreign('profile_id')->references('id')->on('profiles')->onDelete('cascade');;
+            $table->foreign('profile_id')->references('id')->on('profiles');
         });
     }
 

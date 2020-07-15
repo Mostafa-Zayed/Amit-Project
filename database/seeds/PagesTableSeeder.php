@@ -19,7 +19,7 @@ class PagesTableSeeder extends Seeder
             ['name' => 'categories'],
             ['name' => 'contact'],
             ['name' => 'login'],
-            ['name' => 'register']
+            ['name' => 'regirster']
             ]);
     }
 }

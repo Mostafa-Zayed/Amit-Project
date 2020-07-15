@@ -7,22 +7,20 @@ use App\Feature;
 use Illuminate\Support\Facades\Session;
 class FeatureController extends Controller
 {
-    // Index Function
+    //
     public function index(){
         $features = Feature::all();
         return view('admin/features/index',compact('features',$features));
         
     }
 
-    // Create Function
     public function create(){
 
         return view('admin/features.create');
     }
 
-    // Store Function
     public function store(Request $request){
-    
+        //dd($request->all());
         $this->validate($request,[
             'feature_title' => 'required',
             'feature_icon' => 'required',
@@ -40,25 +38,21 @@ class FeatureController extends Controller
         
     }
 
-    // Edit Function
     public function edit($id){
         $feature = Feature::findOrFail($id);
         return view('admin/features.edit',compact('feature',$feature));
     }
 
-    // Update Function
     public function update(Request $request , $id){
 
     }
 
-    // Show Function
     public function show($id){
 
         $feature = Feature::findOrFail($id);
         return view('admin/features.show',compact('feature',$feature));
     }
 
-    // Destroy Function
     public function destroy($id){
 
         $feature = Feature::findOrFail($id)->delete();

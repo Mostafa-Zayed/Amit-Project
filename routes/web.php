@@ -27,7 +27,6 @@ Route::get('contact','HomeController@contact');
 Route::post('contact','HomeController@sendContact');
 Route::get('jobs','HomeController@jobs');
 Route::get('jobs/{id}','HomeController@show_job');
-Route::get('lang/{lang}','HomeController@setLang');
 //Route::get('dashboard/my_profile/{id}','HomeController@myProfile');
 //Route::get('/dashboard/{id}','HomeController@dashboard');
 //Route::get('jobs/{$id}','HomeController@show');

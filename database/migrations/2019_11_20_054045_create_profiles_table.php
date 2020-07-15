@@ -16,6 +16,7 @@ class CreateProfilesTable extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('permission_id');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('job')->nullable();
@@ -30,9 +31,10 @@ class CreateProfilesTable extends Migration
             $table->string('twt_link')->nullable();
             $table->string('goog_link')->nullable();
             $table->timestamps();
-            
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
-            
+            $table->softDeletes();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('permission_id')->references('id')->on('permissions');
         });
     }
 
